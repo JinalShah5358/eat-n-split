@@ -169,12 +169,13 @@ function Button({ children, onClick }) {
 function FormSplitBill({ selectdFriend, handleSplit }) {
   const [billAmt, setBillAmt] = useState(0);
   const [userExps, setUserExps] = useState(0);
-  const paid = billAmt ? billAmt - userExps : "";
+  const paid = billAmt ? billAmt - userExps : 0;
   const [paidID, setPaidID] = useState("User");
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!billAmt || !userExps) return;
+
+    if (billAmt === 0) return;
     handleSplit(paidID === "User" ? paid : -userExps);
   }
 
